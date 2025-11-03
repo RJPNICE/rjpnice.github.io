@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NICE CXone Partner Training Roadmap - Pre-Sales Focus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #00d4ff;
+        }
+        
+        .header h1 {
+            color: #1e3c72;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.2em;
+        }
+        
+        .roadmap {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .tier {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .tier:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .tier-header {
+            text-align: center;
+            padding: 15px;
+            margin: -25px -25px 20px -25px;
+            border-radius: 15px 15px 0 0;
+            color: white;
+            position: relative;
+        }
+        
+        .associate .tier-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .professional .tier-header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .master .tier-header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .tier-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .tier-subtitle {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .track {
+            margin-bottom: 25px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid;
+        }
+        
+        .track.platform {
+            border-left-color: #4CAF50;
+        }
+        
+        .track.workforce {
+            border-left-color: #2196F3;
+        }
+        
+        .track.workflow {
+            border-left-color: #FF9800;
+        }
+        
+        .track.ai {
+            border-left-color: #9C27B0;
+        }
+        
+        .track-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .track-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .modules {
+            list-style: none;
+            font-size: 0.9em;
+        }
+        
+        .modules li {
+            padding: 5px 0;
+            color: #555;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .modules li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #00d4ff;
+        }
+        
+        .demo-focus {
+            background: #e3f2fd;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.85em;
+            color: #1976d2;
+        }
+        
+        .demo-focus strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .special-programs {
+            background: #f0f7ff;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .special-programs h2 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .program-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border-top: 3px solid #00d4ff;
+            transition: transform 0.3s ease;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .program-card h3 {
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+        
+        .program-card ul {
+            list-style: none;
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .program-card ul li {
+            padding: 3px 0;
+            padding-left: 15px;
+            position: relative;
+        }
+        
+        .program-card ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        .progression-arrow {
+            text-align: center;
+            font-size: 2em;
+            color: #00d4ff;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 1024px) {
+            .roadmap {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 NiCE CXone Partner Training Roadmap</h1>
+            <p>Pre-Sales Focused Certification Journey</p>
+        </div>
+        
+        <div class="roadmap">
+            <!-- Associate Level -->
+            <div class="tier associate">
+                <div class="tier-header">
+                    <div class="tier-title">ASSOCIATE</div>
+                    <div class="tier-subtitle">Foundation & Discovery</div>
+                </div>
+                
+                <div class="track platform">
+                    <div class="track-title">
+                        <span class="track-icon" style="background: #4CAF50;"></span>
+                        Platform Training
+                    </div>
+                    <ul class="modules">
+                        <li>Architecture & Security</li>
+                        <li>ACD & Routing</li>
+                        <li>Studio Flows</li>
+                        <li>Omnichannel Setup</li>
+                        <li>Agent Experience</li>
+                        <li>Supervisor Expierence</li>
+                        <li>Dashboards & Reporting</li>
+                    </ul>
+                    <div class="demo-focus">
+                        <strong>Demo Focus:</strong>
+                        15-min platform overview, security story, basic omnichannel demo
+                    </div>
+                </div>
+                
+                <div class="track workforce">
+                    <div class="track-title">
+                        <span class="track-icon" style="background: #2196F3;"></span>
+                        Workforce Augmentation
+                    </div>
+                    <ul class="modules">
+                        <li>Quality Management</li>
+                        <li>Interaction Analytics</li>
+                        <li>Workforce Management</li>
+                    </ul>
+                    <div class="demo-focus">
+                        <strong>Demo Focus:</strong>
+                        Agent & Supervisor empowerment story, business analyst visibility demo
+                    </div>
+                </div>
+                
+                <div class="track workflow">
+                    <div class="track-title">
+                        <span class="track-icon" style="background: #FF9800;"></span>
+                        Workflow Orchestration
+                    </div>
+                    <ul class="modules">
+                        <li>Outbound & Dialler</li>
+                        <li>Agent Integrations</li>
+                        <li>Hubs Introduction</li>
+                    </ul>
+                    <div class="demo-focus">
+                        <strong>Demo Focus:</strong>
+                        Simple workflow demo, integration value prop
+                    </div>
+                </div>
+                
+                <div class="track ai">
+                    <div class="track-title">
+                        <span class="track-icon" style="background: #9C27B0;"></span>
+                        AI Fundamentals
+                    </div>
+                    <ul class="modules">
+                        <li>Expert & Knowledge Hub</li>
+                        <li>Autosummary</li>
+                        <li>Autopilot</li>
+                    </ul>
+                    <div class="demo-focus">
+                        <strong>Demo Focus:</strong>
+                        Simple bot demo, agent assist basics
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Professional Level -->
+            <div class="tier professional">
+                <div class="tier-header">
+                    <div class="tier-title">PROFESSIONAL</div>
+                    <div class="tier-subtitle">Solution Selling & Value</div>
+                </div>
+                
+                <div class="track platform">
+                    <div class="track-title">
+                        <span class="track-icon" style="background: #4CAF50;"></span>
+                        Platform Advanced
+                    </div>
+                    <ul class="modules">
+                        <li>Disaster Recovery & Business Contiunity</li>
+                        <li>Studio & Routing Intermediate</li>
+                        <li>Advanced Integrations (CRM/ERP)</li>
+                        <li>API Demonstrations</li>
+                    </ul>
+                    <div class="demo-focus">
+                        <strong>Demo Focus:</strong>
+                        Live integration demo, failover scenarios, competitive differentiation
+                    </div>
+                </div>
+                
+                <div class="track workforce">
+                    <div class="track-title">
+                        <span class="track-icon" style="background: #2196F3;"></span>
+                        Workforce Excellence
+                    </div>
+                    <ul class="modules">
+                        <li>Interaction Analytics Advanced</li>
+                        <li>Performance Management & Gamification</li>
+                        <li>Feedback Management</li>
+                        <li>Workforce Management Advanced</li>
+                    </ul>
+                    <div class="demo-focus">
+                        <strong>Demo Focus:</strong>
+                        KPI improvement demos, ROI modeling, coaching transformation
+                    </div>
+                </div>
+                
+                <div class="track workflow">
+                    <div class="track-title">
+                        <span class="track-icon" style="background: #FF9800;"></span>
+                        Workflow Mastery
+                    </div>
+                    <ul class="modules">
+                        <li>Studio Advanced Flows</li>
+                        <li>Orchestrator</li>
+                        <li>Agent Integrations Advanced</li>
+                        <li>API-driven & Event Driven Workflows</li>
+                    </ul>
+                    <div class="demo-focus">
+                        <strong>Demo Focus:</strong>
+                        Complex journey orchestration, business process automation
+                    </div>
+                </div>
+                
+                <div class="track ai">
+                    <div class="track-title">
+                        <span class="track-icon" style="background: #9C27B0;"></span>
+                        AI Solutions
+                    </div>
+                    <ul class="modules">
+                        <li>Generative AI Use Cases</li>
+                        <li>Autopilot Configuration</li>
+                        <li>Task Assist</li>
+                        <li>Autosummary Benefits</li>
+                    </ul>
+                    <div class="demo-focus">
+                        <strong>Demo Focus:</strong>
+                        Live bot training, containment metrics, agent augmentation ROI
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Master Level -->
+            <div class="tier master">
+                <div class="tier-header">
+                    <div class="tier-title">MASTER</div>
+                    <div class="tier-subtitle">Strategic & Transformation</div>
+                </div>
+                
+                <div class="track platform">
+                    <div class="track-title">
+                        <span class="track-icon" style="background: #4CAF50;"></span>
+                        Platform Architecture
+                    </div>
+                    <ul class="modules">
+                        <li>Enterprise Architecture Design</li>
+                        <li>Global Deployment Strategies</li>
+                        <li>Complex Migration Planning</li>
+                        <li>Platform Governance</li>
+                    </ul>
+                    <div class="demo-focus">
+                        <strong>Demo Focus:</strong>
+                        Executive architecture sessions, transformation roadmaps
+                    </div>
+                </div>
+                
+                <div class="track workforce">
+                    <div class="track-title">
+                        <span class="track-icon" style="background: #2196F3;"></span>
+                        Workforce Transformation
+                    </div>
+                    <ul class="modules">
+                        <li>Strategic Workforce Management Planning</li>
+                        <li>Quality Culture Building</li>
+                        <li>Performance Transformation</li>
+                        <li>Analytics-Driven Operations</li>
+                    </ul>
+                    <div class="demo-focus">
+                        <strong>Demo Focus:</strong>
+                        C-suite operational excellence story, transformation case studies
+                    </div>
+                </div>
+                
+                <div class="track workflow">
+                    <div class="track-title">
+                        <span class="track-icon" style="background: #FF9800;"></span>
+                        Workflow Innovation
+                    </div>
+                    <ul class="modules">
+                        <li>End-to-End Journey Design</li>
+                        <li>Proactive Engagement</li>
+                        <li>Hyper-Personalization</li>
+                        <li>Industry-Specific Workflows</li>
+                    </ul>
+                    <div class="demo-focus">
+                        <strong>Demo Focus:</strong>
+                        Digital transformation vision, customer journey innovation
+                    </div>
+                </div>
+                
+                <div class="track ai">
+                    <div class="track-title">
+                        <span class="track-icon" style="background: #9C27B0;"></span>
+                        AI Strategy
+                    </div>
+                    <ul class="modules">
+                        <li>Agentic AI Strategy</li>
+                        <li>Proactive AI</li>
+                        <li>Autopilot Advanced</li>
+                    </ul>
+                    <div class="demo-focus">
+                        <strong>Demo Focus:</strong>
+                        Board-level AI strategy, competitive advantage through AI
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="progression-arrow">
+            ← Discovery & Qualification → Solution Design → Strategic Partnership →
+        </div>
+        
+        <div class="special-programs">
+            <h2>Pre-Sales Excellence Programs</h2>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <h3>🎯 Solution Beachhead</h3>
+                    <ul>
+                        <li>Industry vertical positioning</li>
+                        <li>Competitive battlecards</li>
+                        <li>Use case library</li>
+                        <li>Quick win identification</li>
+                    </ul>
+                </div>
+                <div class="program-card">
+                    <h3>🎨 Art of Demo</h3>
+                    <ul>
+                        <li>Discovery questioning</li>
+                        <li>Persona-based demos</li>
+                        <li>Storytelling techniques</li>
+                        <li>Value articulation</li>
+                    </ul>
+                </div>
+                <div class="program-card">
+                    <h3>📊 Tools & Data</h3>
+                    <ul>
+                        <li>Business case building</li>
+                        <li>Champion development</li>
+                        <li>Virtual selling excellence</li>
+                        <li>External tools best practicess</li>
+                    </ul>
+                </div>
+                <div class="program-card">
+                    <h3>🏆 POC Excellence</h3>
+                    <ul>
+                        <li>POC scoping for success</li>
+                        <li>Success criteria setting</li>
+                        <li>Competitive proofing</li>
+                        <li>POC to production</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <span class="legend-color" style="background: #4CAF50;"></span>
+                <span>Platform/Technical</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background: #2196F3;"></span>
+                <span>Workforce/Operations</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background: #FF9800;"></span>
+                <span>Workflow/Integration</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color" style="background: #9C27B0;"></span>
+                <span>AI/Automation</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
