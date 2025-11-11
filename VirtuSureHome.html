@@ -801,11 +801,46 @@
     </footer>
 
     <!-- Cognigy Webchat Integration -->
-    <script src="https://github.com/Cognigy/Webchat/releases/latest/download/webchat.js"></script>
+    <script src="https://github.com/Cognigy/WebchatWidget/releases/latest/download/webchat.js"></script>
     <script>
         initWebchat(
-            "https://endpoint-trial.cognigy.ai/d5ba9382f2db19b433f3f25fb18ed__408978203490__ebc2bda776f1c1e0f3ade4d"
-        );
+            "https://endpoint-trial.cognigy.ai/d5ba9382f2db19b433f3f25fb18ed408978203490ebc2bda776f1c1e0f3ade4d",
+            {
+                // Custom settings for enhanced integration
+                settings: {
+                    colorScheme: "#3b82f6", // Match Virtu Sure brand colors
+                    disableBranding: false,
+                    enableUnreadMessagePreview: true,
+                    startBehavior: {
+                        startBehavior: "injection", // Auto-inject the webchat
+                        getStartedText: "Chat with us",
+                        getStartedData: {
+                            source: "website",
+                            page: "homepage"
+                        }
+                    },
+                    embeddingConfiguration: {
+                        awaitEndpointConfig: true
+                    }
+                }
+            }
+        ).then(function(webchat) {
+            // Store webchat instance globally for API access
+            window.cognigyWebchat = webchat;
+            console.log('Cognigy Webchat initialized successfully!');
+            
+            // Optional: Open webchat when clicking specific buttons
+            document.querySelectorAll('a[href="#"]').forEach(function(button) {
+                if (button.textContent.includes('Chat')) {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        webchat.open();
+                    });
+                }
+            });
+        }).catch(function(error) {
+            console.error('Failed to initialize Cognigy Webchat:', error);
+        });
     </script>
 
     <!-- JavaScript -->
@@ -959,12 +994,30 @@
         window.addEventListener('scroll', revealOnScroll);
         revealOnScroll(); // Initial check
 
-        // Form Validation (for demo purposes - would connect to actual form)
+        // Form Validation and Webchat Integration
         document.querySelectorAll('.btn-primary, .btn-white').forEach(button => {
             button.addEventListener('click', (e) => {
-                if (button.textContent.includes('Open') || button.textContent.includes('Get Started')) {
+                const buttonText = button.textContent.toLowerCase();
+                
+                if (buttonText.includes('chat')) {
                     e.preventDefault();
-                    alert('Thank you for your interest! Our account opening feature is coming soon. Please chat with us using the chat widget in the bottom right corner.');
+                    // Open Cognigy Webchat if available
+                    if (window.cognigyWebchat) {
+                        window.cognigyWebchat.open();
+                    } else {
+                        console.log('Webchat is loading, please try again in a moment.');
+                    }
+                } else if (buttonText.includes('open') || buttonText.includes('get started')) {
+                    e.preventDefault();
+                    // Show message and open webchat
+                    alert('Thank you for your interest! Please use the chat widget to speak with our virtual assistant who can help you open an account.');
+                    if (window.cognigyWebchat) {
+                        setTimeout(() => {
+                            window.cognigyWebchat.open();
+                            // Send initial message to the bot
+                            window.cognigyWebchat.sendMessage("I'd like to open a new account", { intent: "open_account" });
+                        }, 500);
+                    }
                 }
             });
         });
