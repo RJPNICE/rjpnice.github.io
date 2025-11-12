@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VirtuSure - Your Modern Digital Banking Partner</title>
+    <title>Virtu Sure - Your Trusted Insurance Partner</title>
     <style>
         * {
             margin: 0;
@@ -20,9 +20,9 @@
 
         /* Header & Navigation */
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
-            padding: 1rem 0;
+            padding: 0;
             position: fixed;
             width: 100%;
             top: 0;
@@ -34,25 +34,28 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
+            padding: 1rem 5%;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
         }
 
         .logo {
-            height: 50px;
-            width: auto;
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .brand-name {
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 1.5rem;
-            font-weight: bold;
         }
 
         nav ul {
@@ -65,6 +68,7 @@
             color: white;
             text-decoration: none;
             transition: opacity 0.3s;
+            font-weight: 500;
         }
 
         nav a:hover {
@@ -72,44 +76,63 @@
         }
 
         .cta-button {
-            background: white;
-            color: #667eea;
+            background: #ff6b35;
             padding: 0.7rem 1.5rem;
             border-radius: 25px;
-            font-weight: bold;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .cta-button:hover {
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%),
-                        url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1920&h=1080&fit=crop') center/cover no-repeat;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #3a6bb8 100%);
             color: white;
-            padding: 150px 2rem 100px;
+            padding: 150px 5% 100px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
         }
 
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
 
         .hero p {
             font-size: 1.3rem;
             margin-bottom: 2rem;
-            animation: fadeInUp 1s ease 0.2s backwards;
+            opacity: 0.95;
         }
 
         .hero-buttons {
             display: flex;
             gap: 1rem;
             justify-content: center;
-            animation: fadeInUp 1s ease 0.4s backwards;
+            flex-wrap: wrap;
         }
 
         .btn {
@@ -119,250 +142,191 @@
             font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s;
-            font-weight: bold;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .btn-primary {
-            background: white;
-            color: #667eea;
+            background: #ff6b35;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #ff5722;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
         }
 
         .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
+            background: white;
+            color: #1e3c72;
         }
 
-        .btn:hover {
+        .btn-secondary:hover {
+            background: #f0f0f0;
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        /* Features Section */
-        .features {
-            padding: 80px 2rem;
-            max-width: 1200px;
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 60px 5%;
+            background: #f8f9fa;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #2a5298;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 5%;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
+            margin-bottom: 1rem;
+            color: #1e3c72;
         }
 
-        .features-grid {
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        .feature-card {
-            text-align: center;
+        .service-card {
             padding: 2rem;
+            background: white;
             border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             transition: all 0.3s;
-            background: #f8f9fa;
+            border: 2px solid transparent;
         }
 
-        .feature-card:hover {
+        .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: #2a5298;
+            box-shadow: 0 8px 30px rgba(42, 82, 152, 0.2);
         }
 
-        .feature-icon {
+        .service-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
         }
 
-        .feature-card h3 {
+        .service-card h3 {
+            color: #1e3c72;
             margin-bottom: 1rem;
-            color: #667eea;
-        }
-
-        /* Carousel Section */
-        .carousel-section {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 80px 2rem;
-        }
-
-        .carousel-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .carousel {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            position: relative;
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-        }
-
-        .carousel-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            color: white;
-            padding: 3rem 2rem;
-        }
-
-        .carousel-caption h3 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .carousel-controls {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-            padding: 0 1rem;
-        }
-
-        .carousel-btn {
-            background: rgba(255,255,255,0.8);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
             font-size: 1.5rem;
-            transition: all 0.3s;
         }
 
-        .carousel-btn:hover {
-            background: white;
-            transform: scale(1.1);
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
         }
 
-        .carousel-indicators {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
+        /* Why Choose Us */
+        .why-us {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 80px 5%;
         }
 
-        .indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .indicator.active {
-            background: white;
-            width: 30px;
-            border-radius: 6px;
-        }
-
-        /* Products Section */
-        .products {
-            padding: 80px 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .products-grid {
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
+            max-width: 1400px;
+            margin: 3rem auto 0;
         }
 
-        .product-card {
+        .feature-card {
             background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .product-content {
             padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
         }
 
-        .product-content h3 {
-            color: #667eea;
+        .feature-card:hover {
+            transform: scale(1.05);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
             margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .product-content ul {
-            list-style: none;
-            margin: 1.5rem 0;
-        }
-
-        .product-content li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .product-content li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #667eea;
-            font-weight: bold;
+            display: inline-block;
         }
 
         /* Testimonials */
         .testimonials {
-            background: #f8f9fa;
-            padding: 80px 2rem;
-        }
-
-        .testimonials-grid {
+            padding: 80px 5%;
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .testimonial-slider {
+            display: flex;
+            overflow-x: auto;
             gap: 2rem;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            padding: 1rem 0;
         }
 
         .testimonial-card {
+            min-width: 350px;
             background: white;
             padding: 2rem;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            scroll-snap-align: start;
+            flex-shrink: 0;
         }
 
         .testimonial-text {
             font-style: italic;
-            margin-bottom: 1rem;
             color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
         }
 
         .testimonial-author {
@@ -375,82 +339,157 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #2a5298, #1e3c72);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
+            font-size: 1.2rem;
         }
 
-        /* Stats Section */
-        .stats {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .author-info h4 {
+            color: #1e3c72;
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .stars {
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
-            padding: 60px 2rem;
+            padding: 80px 5%;
         }
 
-        .stats-grid {
+        .contact-container {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            text-align: center;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
         }
 
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #333;
             margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2a5298;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
         }
 
         /* Footer */
         footer {
-            background: #2c3e50;
+            background: #1a1a2e;
             color: white;
-            padding: 60px 2rem 30px;
+            padding: 3rem 5% 1rem;
         }
 
         .footer-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+            gap: 2rem;
             margin-bottom: 2rem;
         }
 
         .footer-section h3 {
             margin-bottom: 1rem;
+            color: #ff6b35;
         }
 
         .footer-section ul {
             list-style: none;
         }
 
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
         .footer-section a {
-            color: #bbb;
+            color: #ccc;
             text-decoration: none;
             transition: color 0.3s;
         }
 
         .footer-section a:hover {
-            color: white;
+            color: #ff6b35;
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
-            border-top: 1px solid #444;
-            color: #bbb;
-        }
-
-        .security-badge {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin: 0.5rem 0;
+            border-top: 1px solid #333;
+            color: #888;
         }
 
         /* Animations */
@@ -465,8 +504,44 @@
             }
         }
 
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #ff6b35;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
@@ -475,22 +550,23 @@
                 font-size: 1rem;
             }
 
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            nav ul {
-                display: none;
-            }
-
-            .carousel-slide img {
-                height: 300px;
+            .contact-container {
+                grid-template-columns: 1fr;
             }
 
             .section-title {
                 font-size: 2rem;
             }
+        }
+
+        /* Loading animation for stats */
+        .stat-number.counting {
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
     </style>
 </head>
@@ -498,217 +574,219 @@
     <!-- Header -->
     <header>
         <nav>
-            <div class="logo-container">
-                <img src="https://raw.githubusercontent.com/D4NNY6373NICE/D4NNY6373NICE.github.io/c2363c3214b41d07a306d28c1b19cde3afa98e48/logonobck%202.png" alt="VirtuSure Logo" class="logo">
-                <span class="brand-name">VirtuSure</span>
+            <div class="logo">
+                <div class="logo-icon">🛡️</div>
+                <span>Virtu Sure</span>
             </div>
             <ul>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#products">Products</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#login" class="cta-button">Login</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact" class="cta-button">Get a Quote</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <h1>Banking Made Simple</h1>
-        <p>Experience the future of digital banking in the UK with instant account opening, no hidden fees, and 24/7 support</p>
-        <div class="hero-buttons">
-            <button class="btn btn-primary" onclick="scrollToSection('products')">Open Account</button>
-            <button class="btn btn-secondary" onclick="scrollToSection('features')">Learn More</button>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <h2 class="section-title">Why Choose VirtuSure?</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🚀</div>
-                <h3>Instant Account Opening</h3>
-                <p>Open your account in minutes, not days. No paperwork, no branches, no hassle. Just download our app and get started.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">💳</div>
-                <h3>Free Contactless Card</h3>
-                <p>Get a premium metal contactless card delivered to your door. Apple Pay and Google Pay ready from day one.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">💰</div>
-                <h3>No Hidden Fees</h3>
-                <p>What you see is what you get. No monthly fees, no minimum balance requirements, no surprises.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <h3>Bank-Level Security</h3>
-                <p>Your money is protected by 256-bit encryption and covered by the FSCS up to £85,000.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📱</div>
-                <h3>Smart App</h3>
-                <p>Track spending, set budgets, freeze your card instantly, and manage everything from your phone.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🌍</div>
-                <h3>Global Banking</h3>
-                <p>Spend abroad with the real exchange rate. No foreign transaction fees, ever.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Carousel Section -->
-    <section class="carousel-section">
-        <h2 class="section-title" style="color: #333; margin-bottom: 3rem;">Discover Our Services</h2>
-        <div class="carousel-container">
-            <div class="carousel" id="carousel">
-                <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&h=500&fit=crop" alt="Mobile Banking">
-                    <div class="carousel-caption">
-                        <h3>Mobile Banking at Your Fingertips</h3>
-                        <p>Manage your money anywhere, anytime with our award-winning app</p>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=500&fit=crop" alt="Savings">
-                    <div class="carousel-caption">
-                        <h3>Grow Your Savings</h3>
-                        <p>Earn competitive interest rates on your savings with instant access</p>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1200&h=500&fit=crop" alt="Security">
-                    <div class="carousel-caption">
-                        <h3>Your Security is Our Priority</h3>
-                        <p>Advanced fraud protection and biometric authentication keep your money safe</p>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=500&fit=crop" alt="Analytics">
-                    <div class="carousel-caption">
-                        <h3>Smart Insights</h3>
-                        <p>Understand your spending with intelligent categorisation and budgeting tools</p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-controls">
-                <button class="carousel-btn" onclick="moveCarousel(-1)">‹</button>
-                <button class="carousel-btn" onclick="moveCarousel(1)">›</button>
-            </div>
-            <div class="carousel-indicators" id="indicators"></div>
-        </div>
-    </section>
-
-    <!-- Products Section -->
-    <section class="products" id="products">
-        <h2 class="section-title">Our Products</h2>
-        <div class="products-grid">
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?w=600&h=400&fit=crop" alt="Current Account" class="product-image">
-                <div class="product-content">
-                    <h3>Current Account</h3>
-                    <p>Your everyday banking account with no monthly fees</p>
-                    <ul>
-                        <li>Free contactless debit card</li>
-                        <li>Instant notifications</li>
-                        <li>Direct Debits & Standing Orders</li>
-                        <li>Overdraft up to £500</li>
-                        <li>FSCS protected up to £85,000</li>
-                    </ul>
-                    <button class="btn btn-primary" style="width: 100%;">Open Account</button>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1579621970795-87facc2f976d?w=600&h=400&fit=crop" alt="Savings Account" class="product-image">
-                <div class="product-content">
-                    <h3>Savings Account</h3>
-                    <p>Earn competitive interest on your savings</p>
-                    <ul>
-                        <li>Up to 4.5% AER variable rate</li>
-                        <li>Instant access to your money</li>
-                        <li>No withdrawal limits</li>
-                        <li>Round-up spare change</li>
-                        <li>Automatic savings rules</li>
-                    </ul>
-                    <button class="btn btn-primary" style="width: 100%;">Start Saving</button>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1556742111-a301076d9d18?w=600&h=400&fit=crop" alt="Business Account" class="product-image">
-                <div class="product-content">
-                    <h3>Business Account</h3>
-                    <p>Banking designed for entrepreneurs and small businesses</p>
-                    <ul>
-                        <li>Invoicing and accounting tools</li>
-                        <li>Multi-user access</li>
-                        <li>Expense management</li>
-                        <li>Tax calculation assistance</li>
-                        <li>Dedicated business support</li>
-                    </ul>
-                    <button class="btn btn-primary" style="width: 100%;">Get Started</button>
-                </div>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Protecting What Matters Most</h1>
+            <p>Comprehensive insurance solutions tailored to your life, business, and future. Experience peace of mind with Virtu Sure.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Get Started</a>
+                <a href="#services" class="btn btn-secondary">Explore Coverage</a>
             </div>
         </div>
     </section>
 
     <!-- Stats Section -->
     <section class="stats">
-        <div class="stats-grid">
-            <div class="stat">
-                <div class="stat-number">2M+</div>
-                <div>Happy Customers</div>
+        <div class="stat-card fade-in">
+            <div class="stat-number" data-target="50000">0</div>
+            <div class="stat-label">Happy Customers</div>
+        </div>
+        <div class="stat-card fade-in">
+            <div class="stat-number" data-target="99">0</div>
+            <div class="stat-label">% Customer Satisfaction</div>
+        </div>
+        <div class="stat-card fade-in">
+            <div class="stat-number" data-target="25">0</div>
+            <div class="stat-label">Years of Excellence</div>
+        </div>
+        <div class="stat-card fade-in">
+            <div class="stat-number" data-target="500">0</div>
+            <div class="stat-label">Million in Coverage</div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2 class="section-title">Our Insurance Solutions</h2>
+        <p class="section-subtitle">Comprehensive coverage designed for every stage of your life</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🏠</div>
+                <h3>Home Insurance</h3>
+                <p>Protect your home and belongings with comprehensive coverage. From natural disasters to theft, we've got you covered.</p>
             </div>
-            <div class="stat">
-                <div class="stat-number">£8B+</div>
-                <div>Money Managed</div>
+            <div class="service-card">
+                <div class="service-icon">🚗</div>
+                <h3>Auto Insurance</h3>
+                <p>Drive with confidence knowing you're protected. Flexible plans with competitive rates and 24/7 roadside assistance.</p>
             </div>
-            <div class="stat">
-                <div class="stat-number">4.8★</div>
-                <div>App Store Rating</div>
+            <div class="service-card">
+                <div class="service-icon">❤️</div>
+                <h3>Life Insurance</h3>
+                <p>Secure your family's future with our life insurance plans. Term, whole, and universal life options available.</p>
             </div>
-            <div class="stat">
-                <div class="stat-number">24/7</div>
-                <div>Customer Support</div>
+            <div class="service-card">
+                <div class="service-icon">🏥</div>
+                <h3>Health Insurance</h3>
+                <p>Access quality healthcare without breaking the bank. Individual, family, and business health plans available.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💼</div>
+                <h3>Business Insurance</h3>
+                <p>Protect your business from unexpected risks. Liability, property, and workers' compensation coverage.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">✈️</div>
+                <h3>Travel Insurance</h3>
+                <p>Travel worry-free with comprehensive coverage for trips, medical emergencies, and trip cancellations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-us" id="about">
+        <h2 class="section-title">Why Choose Virtu Sure?</h2>
+        <p class="section-subtitle">Your trusted partner in protection</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Fast Claims</h3>
+                <p>Average claim processing in 48 hours</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Best Rates</h3>
+                <p>Competitive pricing with flexible payment options</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Personalized Service</h3>
+                <p>Dedicated agents for your unique needs</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>24/7 Support</h3>
+                <p>Round-the-clock assistance whenever you need it</p>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials">
+    <section class="testimonials" id="testimonials">
         <h2 class="section-title">What Our Customers Say</h2>
-        <div class="testimonials-grid">
+        <p class="section-subtitle">Real stories from real people</p>
+        
+        <div class="testimonial-slider">
             <div class="testimonial-card">
-                <p class="testimonial-text">"Switching to VirtuSure was the best financial decision I've made. The app is intuitive, and I love the instant notifications. No more surprise overdraft fees!"</p>
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"Virtu Sure made the insurance process so easy! Their team was incredibly helpful and I got the perfect coverage for my family at a great rate."</p>
                 <div class="testimonial-author">
-                    <div class="author-avatar">SK</div>
-                    <div>
-                        <strong>Sarah Kennedy</strong>
-                        <div style="color: #888; font-size: 0.9rem;">London</div>
+                    <div class="author-avatar">SM</div>
+                    <div class="author-info">
+                        <h4>Sarah Mitchell</h4>
+                        <p>Homeowner, Boston</p>
                     </div>
                 </div>
             </div>
             <div class="testimonial-card">
-                <p class="testimonial-text">"As a freelancer, the business account features are incredible. Invoicing, tax calculations, and expense tracking all in one place. Highly recommend!"</p>
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"When I had a claim, Virtu Sure processed it within 2 days. Their customer service is unmatched. Highly recommend!"</p>
                 <div class="testimonial-author">
-                    <div class="author-avatar">JM</div>
-                    <div>
-                        <strong>James Morrison</strong>
-                        <div style="color: #888; font-size: 0.9rem;">Manchester</div>
+                    <div class="author-avatar">JD</div>
+                    <div class="author-info">
+                        <h4>James Davidson</h4>
+                        <p>Business Owner, Chicago</p>
                     </div>
                 </div>
             </div>
             <div class="testimonial-card">
-                <p class="testimonial-text">"I travel frequently for work, and VirtuSure's foreign transaction fees (or lack thereof!) have saved me hundreds of pounds. The real exchange rate is a game-changer."</p>
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"Switching to Virtu Sure was the best decision. I'm saving money and have better coverage than before. Their app makes everything so convenient."</p>
                 <div class="testimonial-author">
-                    <div class="author-avatar">EP</div>
-                    <div>
-                        <strong>Emma Patel</strong>
-                        <div style="color: #888; font-size: 0.9rem;">Birmingham</div>
+                    <div class="author-avatar">EM</div>
+                    <div class="author-info">
+                        <h4>Emily Rodriguez</h4>
+                        <p>Healthcare Professional, Miami</p>
                     </div>
                 </div>
             </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"The personalized service at Virtu Sure is exceptional. They took time to understand my needs and found the perfect policy for me."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MC</div>
+                    <div class="author-info">
+                        <h4>Michael Chen</h4>
+                        <p>Software Engineer, Seattle</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Get Your Free Quote Today</h2>
+                <p>Ready to secure your future? Reach out to our team and we'll help you find the perfect insurance solution.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <span class="contact-icon">📞</span>
+                        <span>1-800-VIRTUSURE</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">✉️</span>
+                        <span>info@virtusure.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <span>123 Insurance Blvd, Suite 500, New York, NY 10001</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">⏰</span>
+                        <span>Mon-Fri: 8am-8pm | Sat-Sun: 9am-5pm</span>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">How Can We Help?</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Request Quote</button>
+            </form>
         </div>
     </section>
 
@@ -716,138 +794,227 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>VirtuSure</h3>
-                <p>Modern banking for modern life. FCA authorised and regulated.</p>
-                <div class="security-badge">
-                    <span>🔒</span>
-                    <span>FSCS Protected</span>
-                </div>
-                <div class="security-badge">
-                    <span>✓</span>
-                    <span>FCA Regulated</span>
-                </div>
+                <h3>About Virtu Sure</h3>
+                <p>Leading insurance provider committed to protecting what matters most to you. With 25 years of excellence, we're your trusted partner in security.</p>
             </div>
             <div class="footer-section">
-                <h3>Products</h3>
+                <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#">Current Account</a></li>
-                    <li><a href="#">Savings Account</a></li>
-                    <li><a href="#">Business Account</a></li>
-                    <li><a href="#">Overdrafts</a></li>
-                    <li><a href="#">Loans</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h3>Company</h3>
+                <h3>Insurance Products</h3>
                 <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Press</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Home Insurance</a></li>
+                    <li><a href="#">Auto Insurance</a></li>
+                    <li><a href="#">Life Insurance</a></li>
+                    <li><a href="#">Health Insurance</a></li>
+                    <li><a href="#">Business Insurance</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h3>Support</h3>
+                <h3>Resources</h3>
                 <ul>
-                    <li><a href="#">Help Centre</a></li>
-                    <li><a href="#">Security</a></li>
+                    <li><a href="#">Claims Center</a></li>
+                    <li><a href="#">FAQs</a></li>
                     <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms & Conditions</a></li>
-                    <li><a href="#">Accessibility</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Careers</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 VirtuSure Ltd. All rights reserved. | Authorised by the Financial Conduct Authority | Company No. 12345678</p>
-            <p style="margin-top: 1rem; font-size: 0.9rem;">VirtuSure is a trading name of VirtuSure Ltd, registered in England and Wales. Deposits are protected by the Financial Services Compensation Scheme up to £85,000.</p>
+            <p>&copy; 2025 Virtu Sure Insurance. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">↑</div>
+
+    <!-- JavaScript for Dynamic Elements -->
     <script>
-        // Carousel functionality
-        let currentSlide = 0;
-        const carousel = document.getElementById('carousel');
-        const slides = document.querySelectorAll('.carousel-slide');
-        const indicatorsContainer = document.getElementById('indicators');
+        // Animated Counter for Stats
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
 
-        // Create indicators
-        slides.forEach((_, index) => {
-            const indicator = document.createElement('div');
-            indicator.className = 'indicator';
-            if (index === 0) indicator.classList.add('active');
-            indicator.onclick = () => goToSlide(index);
-            indicatorsContainer.appendChild(indicator);
-        });
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current).toLocaleString();
+                    element.classList.add('counting');
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target.toLocaleString();
+                    element.classList.remove('counting');
+                }
+            };
 
-        const indicators = document.querySelectorAll('.indicator');
-
-        function updateCarousel() {
-            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentSlide);
-            });
+            updateCounter();
         }
 
-        function moveCarousel(direction) {
-            currentSlide += direction;
-            if (currentSlide < 0) currentSlide = slides.length - 1;
-            if (currentSlide >= slides.length) currentSlide = 0;
-            updateCarousel();
-        }
-
-        function goToSlide(index) {
-            currentSlide = index;
-            updateCarousel();
-        }
-
-        // Auto-play carousel
-        setInterval(() => {
-            moveCarousel(1);
-        }, 5000);
-
-        // Smooth scrolling
-        function scrollToSection(sectionId) {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                const offsetTop = element.offsetTop - 80;
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            }
-        }
-
-        // Animate on scroll
+        // Intersection Observer for Stats Animation
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            threshold: 0.5,
+            rootMargin: '0px'
         };
 
-        const observer = new IntersectionObserver((entries) => {
+        const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 1s ease forwards';
+                if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => animateCounter(stat));
+                    entry.target.classList.add('animated');
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.feature-card, .product-card, .testimonial-card').forEach(el => {
-            observer.observe(el);
-        });
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
 
-        // Button click handlers
-        document.querySelectorAll('.btn-primary').forEach(button => {
-            button.addEventListener('click', function(e) {
-                if (!this.onclick) {
-                    alert('Thank you for your interest! Account opening will redirect to our secure application form.');
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
         });
+
+        // Scroll to Top Button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Form Submission Handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+
+            // Simple form validation feedback
+            alert(`Thank you, ${name}! We've received your quote request and will contact you at ${email} within 24 hours.`);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Add fade-in animation on scroll for service cards
+        const fadeElements = document.querySelectorAll('.service-card, .feature-card');
+        
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                    
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => fadeObserver.observe(el));
+
+        // Testimonial auto-scroll
+        const testimonialSlider = document.querySelector('.testimonial-slider');
+        let isScrolling;
+        
+        function autoScrollTestimonials() {
+            if (testimonialSlider && !isScrolling) {
+                const scrollAmount = testimonialSlider.scrollLeft + 370;
+                const maxScroll = testimonialSlider.scrollWidth - testimonialSlider.clientWidth;
+                
+                if (scrollAmount >= maxScroll) {
+                    testimonialSlider.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    testimonialSlider.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+                }
+            }
+        }
+
+        // Auto-scroll testimonials every 5 seconds
+        setInterval(autoScrollTestimonials, 5000);
+
+        // Pause auto-scroll when user is manually scrolling
+        if (testimonialSlider) {
+            testimonialSlider.addEventListener('scroll', () => {
+                isScrolling = true;
+                clearTimeout(window.scrollTimeout);
+                window.scrollTimeout = setTimeout(() => {
+                    isScrolling = false;
+                }, 1000);
+            });
+        }
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero && scrolled < hero.offsetHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Dynamic greeting based on time of day
+        function setGreeting() {
+            const hour = new Date().getHours();
+            const heroText = document.querySelector('.hero p');
+            
+            if (hour < 12) {
+                console.log('Good morning! Welcome to Virtu Sure');
+            } else if (hour < 18) {
+                console.log('Good afternoon! Welcome to Virtu Sure');
+            } else {
+                console.log('Good evening! Welcome to Virtu Sure');
+            }
+        }
+
+        setGreeting();
     </script>
 
-<script src="https://github.com/Cognigy/Webchat/releases/latest/download/webchat.js"></script> 
-<script> 	initWebchat( 		"https://endpoint-trial.cognigy.ai/d5ba9382f2db19b433f3f25fb18ed408978203490ebc2bda776f1c1e0f3ade4d" 	); </script>
-
+    <!-- Cognigy Webchat Integration -->
+    <script src="https://github.com/Cognigy/Webchat/releases/latest/download/webchat.js"></script> 
+    <script>
+        initWebchat(
+            "https://endpoint-trial.cognigy.ai/d5ba9382f2db19b433f3f25fb18ed__408978203490__ebc2bda776f1c1e0f3ade4d"
+        );
+    </script>
 </body>
 </html>
