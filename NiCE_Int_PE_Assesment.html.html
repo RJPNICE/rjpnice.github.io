@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NICE CXone Partner Training Framework - Scenario-Based Learning</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #00d4ff;
+        }
+        
+        .header h1 {
+            color: #1e3c72;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .tagline {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        
+        .demo-mindset {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .demo-mindset h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+        
+        .demo-mindset p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+        
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-tab {
+            padding: 12px 25px;
+            background: #f0f0f0;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .nav-tab.active {
+            background: white;
+            border-color: #667eea;
+            color: #667eea;
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.2);
+        }
+        
+        .nav-tab:hover {
+            background: white;
+            border-color: #764ba2;
+        }
+        
+        /* Content Sections */
+        .content-section {
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        /* Module Card Structure */
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .module-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+        
+        .module-header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 15px;
+            margin: -25px -25px 20px -25px;
+            border-radius: 13px 13px 0 0;
+        }
+        
+        .module-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .module-subtitle {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        /* Scenario Box */
+        .scenario-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .scenario-box h4 {
+            color: #856404;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        
+        .scenario-box p {
+            color: #666;
+            font-style: italic;
+        }
+        
+        /* Value Prop Section */
+        .value-prop {
+            background: #e7f5ff;
+            border-left: 4px solid #0066cc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .value-prop h4 {
+            color: #0066cc;
+            margin-bottom: 8px;
+        }
+        
+        .value-prop ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .value-prop li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .value-prop li:before {
+            content: "💰";
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Personas Section */
+        .personas {
+            background: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .personas h4 {
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+        
+        .persona-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        
+        .persona-tag {
+            background: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        
+        /* Demo Steps */
+        .demo-steps {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .demo-steps h4 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .step-number {
+            background: #4CAF50;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        
+        .step-detail {
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        /* Win Story */
+        .win-story {
+            background: #e8f5e9;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .win-story h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        /* Licensing Info */
+        .licensing-info {
+            background: #fce4ec;
+            border: 2px solid #e91e63;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .licensing-info h4 {
+            color: #c2185b;
+            margin-bottom: 10px;
+        }
+        
+        /* Exam Section */
+        .exam-section {
+            background: #f5f5f5;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .exam-section h4 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .exam-questions {
+            list-style: none;
+        }
+        
+        .exam-questions li {
+            background: white;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+            font-size: 0.95em;
+        }
+        
+        /* Business Outcomes */
+        .business-outcomes {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .business-outcomes h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .outcome-card {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .outcome-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .outcome-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .outcome-metric {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        /* Certification Path */
+        .cert-path {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .cert-levels {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .cert-level {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .cert-level:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .cert-level.fundamental {
+            border-top: 4px solid #4CAF50;
+        }
+        
+        .cert-level.advanced {
+            border-top: 4px solid #2196F3;
+        }
+        
+        .cert-level.expert {
+            border-top: 4px solid #9C27B0;
+        }
+        
+        .cert-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .cert-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #1e3c72;
+        }
+        
+        .cert-content {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .cert-modules {
+            text-align: left;
+            font-size: 0.85em;
+            color: #555;
+        }
+        
+        .cert-modules ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .cert-modules li {
+            padding: 3px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .cert-modules li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+        }
+        
+        /* Arrow between levels */
+        .cert-arrow {
+            font-size: 1.5em;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+        }
+        
+        @media (max-width: 768px) {
+            .module-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cert-levels {
+                flex-direction: column;
+            }
+            
+            .cert-arrow {
+                transform: rotate(90deg);
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 NICE CXone Partner Training Framework</h1>
+            <p class="tagline">Scenario-Based Learning with Demo Excellence</p>
+            <div class="demo-mindset">
+                <h3>🚀 Demo Mindset Philosophy</h3>
+                <p>"Every demo tells a story. Start with the pain, showcase the solution, quantify the value."</p>
+            </div>
+        </div>
+        
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <div class="nav-tab active" onclick="showSection('workforce')">Workforce Augmentation</div>
+            <div class="nav-tab" onclick="showSection('workflow')">Workflow Orchestration</div>
+            <div class="nav-tab" onclick="showSection('ai')">AI & Automation</div>
+            <div class="nav-tab" onclick="showSection('platform')">Platform</div>
+            <div class="nav-tab" onclick="showSection('certification')">Certification Path</div>
+        </div>
+        
+        <!-- Workforce Augmentation Section -->
+        <div class="content-section active" id="workforce">
+            <h2 style="color: #2196F3; margin-bottom: 30px;">Workforce Augmentation Training Modules</h2>
+            
+            <div class="module-grid">
+                <!-- QM Module -->
+                <div class="module-card">
+                    <div class="module-header" style="background: linear-gradient(135deg, #2196F3, #21CBF3);">
+                        <div class="module-title">Quality Management (QM)</div>
+                        <div class="module-subtitle">Transform Quality from Cost Center to Revenue Driver</div>
+                    </div>
+                    
+                    <div class="scenario-box">
+                        <h4>🎯 Real-World Scenario</h4>
+                        <p>"Supervisor finds it hard to quality assure calls, doesn't have enough personnel to help, and CSAT is down 15% this quarter. Agents are frustrated with inconsistent feedback, and compliance violations are increasing."</p>
+                    </div>
+                    
+                    <div class="value-prop">
+                        <h4>Value Proposition</h4>
+                        <ul>
+                            <li>Reduce quality evaluation time by 60% with AI-assisted scoring</li>
+                            <li>Increase coaching coverage from 5% to 100% of agents</li>
+                            <li>Improve CSAT by 12-18% within 90 days</li>
+                            <li>Ensure 100% compliance monitoring</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="personas">
+                        <h4>Target Personas</h4>
+                        <div class="persona-list">
+                            <div class="persona-tag">📊 Quality Manager</div>
+                            <div class="persona-tag">👔 Contact Center Director</div>
+                            <div class="persona-tag">⚖️ Compliance Officer</div>
+                            <div class="persona-tag">💼 VP Operations</div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-steps">
+                        <h4>How to Demo</h4>
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <div class="step-title">Open with the Pain</div>
+                                <div class="step-detail">Show current state: Manual evaluations, 5% coverage, inconsistent scoring</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <div class="step-title">AI-Powered Auto-Scoring</div>
+                                <div class="step-detail">Demonstrate 100% interaction scoring with sentiment analysis</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <div class="step-title">Smart Sampling</div>
+                                <div class="step-detail">Show risk-based sampling focusing on outliers and compliance risks</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <div class="step-title">Real-time Coaching</div>
+                                <div class="step-detail">Display agent scorecards, coaching assignments, and improvement tracking</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <div class="step-title">Quantify Impact</div>
+                                <div class="step-detail">Show ROI calculator: Time saved × hourly rate + CSAT improvement value</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="win-story">
+                        <h4>🏆 Win Story</h4>
+                        <p><strong>Financial Services Client:</strong> Reduced quality evaluation time from 40 hours/week to 8 hours/week, allowing quality team to focus on coaching. Result: 22% CSAT improvement and $1.2M annual savings in operational costs.</p>
+                    </div>
+                    
+                    <div class="licensing-info">
+                        <h4>💳 Licensing Components</h4>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li>✓ QM Base License (per evaluator)</li>
+                            <li>✓ Recording Storage (per GB)</li>
+                            <li>✓ Analytics Add-on (optional)</li>
+                            <li>✓ AI Scoring Module (optional but recommended)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="exam-section">
+                        <h4>📝 RFP-Style Exam Questions</h4>
+                        <ul class="exam-questions">
+                            <li>Q1: How does your QM solution handle multi-channel quality evaluations across voice, chat, and email?</li>
+                            <li>Q2: What percentage of interactions can be automatically scored without human intervention?</li>
+                            <li>Q3: How does the system ensure calibration consistency across multiple evaluators?</li>
+                            <li>Q4: Can you demonstrate compliance monitoring for PCI-DSS requirements?</li>
+                            <li>Q5: What is the typical ROI timeline for QM implementation?</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- WFM Module -->
+                <div class="module-card">
+                    <div class="module-header" style="background: linear-gradient(135deg, #43A047, #66BB6A);">
+                        <div class="module-title">Workforce Management (WFM)</div>
+                        <div class="module-subtitle">Optimize Every Moment, Every Agent, Every Channel</div>
+                    </div>
+                    
+                    <div class="scenario-box">
+                        <h4>🎯 Real-World Scenario</h4>
+                        <p>"Contact center experiencing 30% overstaffing during slow periods and 25% understaffing during peaks. Overtime costs are 40% over budget, agent adherence is below 75%, and customer wait times spike to 8+ minutes during busy hours."</p>
+                    </div>
+                    
+                    <div class="value-prop">
+                        <h4>Value Proposition</h4>
+                        <ul>
+                            <li>Reduce staffing costs by 15-20% through optimized scheduling</li>
+                            <li>Improve forecast accuracy to 95%+</li>
+                            <li>Increase schedule adherence to 90%+</li>
+                            <li>Eliminate overtime costs by 60%</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="personas">
+                        <h4>Target Personas</h4>
+                        <div class="persona-list">
+                            <div class="persona-tag">📈 Workforce Planner</div>
+                            <div class="persona-tag">💰 CFO</div>
+                            <div class="persona-tag">🎯 Operations Manager</div>
+                            <div class="persona-tag">👥 HR Director</div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-steps">
+                        <h4>How to Demo</h4>
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <div class="step-title">Show Current Chaos</div>
+                                <div class="step-detail">Display mismatched staffing levels vs. actual demand</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <div class="step-title">AI-Powered Forecasting</div>
+                                <div class="step-detail">Demonstrate multi-factor forecasting with 95%+ accuracy</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <div class="step-title">Smart Scheduling</div>
+                                <div class="step-detail">Show automated schedule generation with agent preferences</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <div class="step-title">Real-time Adjustments</div>
+                                <div class="step-detail">Display intraday management and automated notifications</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <div class="step-title">ROI Dashboard</div>
+                                <div class="step-detail">Calculate savings: Reduced overtime + optimal staffing + improved SLAs</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="win-story">
+                        <h4>🏆 Win Story</h4>
+                        <p><strong>Retail Client:</strong> Reduced annual staffing costs by $2.4M while improving service levels from 65% to 88%. Forecast accuracy improved from 72% to 96%, virtually eliminating surprise understaffing situations.</p>
+                    </div>
+                    
+                    <div class="licensing-info">
+                        <h4>💳 Licensing Components</h4>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li>✓ WFM Core (per agent scheduled)</li>
+                            <li>✓ Advanced Forecasting Module</li>
+                            <li>✓ Real-time Adherence Tracking</li>
+                            <li>✓ Mobile App Access (optional)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="exam-section">
+                        <h4>📝 RFP-Style Exam Questions</h4>
+                        <ul class="exam-questions">
+                            <li>Q1: How does your WFM handle multi-skill, multi-channel forecasting and scheduling?</li>
+                            <li>Q2: What machine learning capabilities improve forecast accuracy over time?</li>
+                            <li>Q3: How does the system handle agent preferences and work-life balance?</li>
+                            <li>Q4: Can you demonstrate real-time adherence monitoring and exception handling?</li>
+                            <li>Q5: What is the implementation timeline for a 500-agent contact center?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- More WFM modules would go here -->
+        </div>
+        
+        <!-- Workflow Orchestration Section -->
+        <div class="content-section" id="workflow">
+            <h2 style="color: #FF9800; margin-bottom: 30px;">Workflow Orchestration Training Modules</h2>
+            
+            <div class="module-grid">
+                <!-- Studio 2.0 Module -->
+                <div class="module-card">
+                    <div class="module-header" style="background: linear-gradient(135deg, #FF9800, #FFB74D);">
+                        <div class="module-title">Studio 2.0 - Advanced Workflows</div>
+                        <div class="module-subtitle">Design Customer Journeys That Delight</div>
+                    </div>
+                    
+                    <div class="scenario-box">
+                        <h4>🎯 Real-World Scenario</h4>
+                        <p>"Customer calls about a late delivery, but the IVR can't access order status. Agent has to toggle between 3 systems to find information. Customer has already called twice about the same issue but agent has no context."</p>
+                    </div>
+                    
+                    <div class="value-prop">
+                        <h4>Value Proposition</h4>
+                        <ul>
+                            <li>Reduce average handle time by 35% through intelligent routing</li>
+                            <li>Decrease repeat contacts by 40% with context preservation</li>
+                            <li>Improve first call resolution by 25%</li>
+                            <li>Enable self-service resolution for 30% of contacts</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="personas">
+                        <h4>Target Personas</h4>
+                        <div class="persona-list">
+                            <div class="persona-tag">🔧 IT Architect</div>
+                            <div class="persona-tag">🎨 CX Designer</div>
+                            <div class="persona-tag">💻 Integration Manager</div>
+                            <div class="persona-tag">📊 Process Owner</div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-steps">
+                        <h4>How to Demo</h4>
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <div class="step-title">Current State Pain</div>
+                                <div class="step-detail">Show disconnected systems and frustrated customer experience</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <div class="step-title">Visual Flow Builder</div>
+                                <div class="step-detail">Drag and drop creation of intelligent routing with API integrations</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <div class="step-title">Live Data Integration</div>
+                                <div class="step-detail">Show real-time CRM/ERP data populating customer context</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <div class="step-title">Omnichannel Orchestration</div>
+                                <div class="step-detail">Demonstrate seamless channel switching with context</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <div class="step-title">Business Impact</div>
+                                <div class="step-detail">Show reduced AHT, improved FCR, and cost savings</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="win-story">
+                        <h4>🏆 Win Story</h4>
+                        <p><strong>E-commerce Giant:</strong> Integrated order management, inventory, and shipping systems into intelligent IVR. Result: 45% call deflection, 3-minute AHT reduction, $4.2M annual savings.</p>
+                    </div>
+                    
+                    <div class="licensing-info">
+                        <h4>💳 Licensing Components</h4>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li>✓ Studio Designer License</li>
+                            <li>✓ API Connector Pack</li>
+                            <li>✓ Advanced Routing Engine</li>
+                            <li>✓ Testing & Debugging Tools</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- AI & Automation Section -->
+        <div class="content-section" id="ai">
+            <h2 style="color: #9C27B0; margin-bottom: 30px;">AI & Automation Training Modules</h2>
+            
+            <div class="module-grid">
+                <!-- Autopilot Module -->
+                <div class="module-card">
+                    <div class="module-header" style="background: linear-gradient(135deg, #9C27B0, #BA68C8);">
+                        <div class="module-title">Autopilot - Conversational AI</div>
+                        <div class="module-subtitle">Automate with Intelligence, Not Just Rules</div>
+                    </div>
+                    
+                    <div class="scenario-box">
+                        <h4>🎯 Real-World Scenario</h4>
+                        <p>"Contact center receives 10,000 password reset calls monthly (40% of volume). Each call costs $5.50 and takes 3.5 minutes. Agents are burned out handling repetitive requests while complex issues wait in queue."</p>
+                    </div>
+                    
+                    <div class="value-prop">
+                        <h4>Value Proposition</h4>
+                        <ul>
+                            <li>Automate 70% of routine inquiries with 95% accuracy</li>
+                            <li>Reduce cost per contact from $5.50 to $0.35</li>
+                            <li>Available 24/7/365 with consistent service quality</li>
+                            <li>Free agents to handle complex, value-added interactions</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="personas">
+                        <h4>Target Personas</h4>
+                        <div class="persona-list">
+                            <div class="persona-tag">🤖 Digital Innovation Leader</div>
+                            <div class="persona-tag">💼 COO</div>
+                            <div class="persona-tag">💡 CTO</div>
+                            <div class="persona-tag">💰 CFO</div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-steps">
+                        <h4>How to Demo</h4>
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <div class="step-title">Volume Analysis</div>
+                                <div class="step-detail">Show current repetitive contact volume and associated costs</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <div class="step-title">Live Bot Conversation</div>
+                                <div class="step-detail">Demonstrate natural language understanding and multi-turn dialogue</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <div class="step-title">Backend Integration</div>
+                                <div class="step-detail">Show bot completing actual transactions (password reset, balance check)</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <div class="step-title">Seamless Escalation</div>
+                                <div class="step-detail">Display intelligent handoff to human with full context</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <div class="step-title">ROI Calculator</div>
+                                <div class="step-detail">Calculate: (Calls deflected × Cost per call) - Bot investment = Savings</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="win-story">
+                        <h4>🏆 Win Story</h4>
+                        <p><strong>Telecom Provider:</strong> Automated 65% of technical support inquiries. Annual savings: $8.4M. Customer satisfaction increased 18% due to instant 24/7 service availability.</p>
+                    </div>
+                    
+                    <div class="licensing-info">
+                        <h4>💳 Licensing Components</h4>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li>✓ Autopilot Base (per conversation tier)</li>
+                            <li>✓ NLU Training Platform</li>
+                            <li>✓ Integration Connectors</li>
+                            <li>✓ Analytics & Optimization Suite</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Agentic AI Module -->
+                <div class="module-card">
+                    <div class="module-header" style="background: linear-gradient(135deg, #E91E63, #F06292);">
+                        <div class="module-title">Agentic AI - Advanced Course</div>
+                        <div class="module-subtitle">AI That Thinks, Decides, and Acts</div>
+                    </div>
+                    
+                    <div class="scenario-box">
+                        <h4>🎯 Real-World Scenario</h4>
+                        <p>"Agents spend 40% of their time searching for information across 8 different systems. They miss upsell opportunities worth $2M annually. Training new agents takes 6 weeks and quality scores vary by 30% between agents."</p>
+                    </div>
+                    
+                    <div class="value-prop">
+                        <h4>Value Proposition</h4>
+                        <ul>
+                            <li>Reduce agent ramp time by 50% with AI guidance</li>
+                            <li>Increase upsell/cross-sell by 35% with AI recommendations</li>
+                            <li>Improve consistency with real-time compliance monitoring</li>
+                            <li>Decrease after-call work by 60% with automated summaries</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="personas">
+                        <h4>Target Personas</h4>
+                        <div class="persona-list">
+                            <div class="persona-tag">🎓 Training Manager</div>
+                            <div class="persona-tag">📈 Revenue Officer</div>
+                            <div class="persona-tag">⚖️ Compliance Lead</div>
+                            <div class="persona-tag">🎯 Operations VP</div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-steps">
+                        <h4>How to Demo</h4>
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <div class="step-title">Agent Struggle</div>
+                                <div class="step-detail">Show agent juggling systems and missing opportunities</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <div class="step-title">Real-time Assistance</div>
+                                <div class="step-detail">Display AI suggesting responses and next best actions</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <div class="step-title">Knowledge Synthesis</div>
+                                <div class="step-detail">Show AI pulling information from multiple sources instantly</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <div class="step-title">Automated Wrap-up</div>
+                                <div class="step-detail">Demonstrate AI-generated call summaries and CRM updates</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <div class="step-title">Performance Impact</div>
+                                <div class="step-detail">Show improved metrics: AHT, FCR, Revenue per call</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="win-story">
+                        <h4>🏆 Win Story</h4>
+                        <p><strong>Insurance Leader:</strong> Deployed Agentic AI across 2,000 agents. Results: 28% AHT reduction, 42% increase in policy upgrades, 50% reduction in compliance violations. ROI achieved in 4 months.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Platform Section -->
+        <div class="content-section" id="platform">
+            <h2 style="color: #4CAF50; margin-bottom: 30px;">Platform Training Modules</h2>
+            
+            <div class="module-grid">
+                <!-- Architecture & Security Module -->
+                <div class="module-card">
+                    <div class="module-header" style="background: linear-gradient(135deg, #4CAF50, #66BB6A);">
+                        <div class="module-title">Architecture & Security</div>
+                        <div class="module-subtitle">Enterprise-Grade, Compliance-Ready, Future-Proof</div>
+                    </div>
+                    
+                    <div class="scenario-box">
+                        <h4>🎯 Real-World Scenario</h4>
+                        <p>"CISO is concerned about cloud security, needs SOC2 and PCI compliance, worried about data residency in EU, and previous vendor had 3 outages last year causing $500K in losses."</p>
+                    </div>
+                    
+                    <div class="value-prop">
+                        <h4>Value Proposition</h4>
+                        <ul>
+                            <li>99.99% uptime SLA with full redundancy</li>
+                            <li>SOC2, PCI-DSS, GDPR, HIPAA compliant</li>
+                            <li>End-to-end encryption with zero-trust architecture</li>
+                            <li>Geo-redundant data centers with local data residency</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="personas">
+                        <h4>Target Personas</h4>
+                        <div class="persona-list">
+                            <div class="persona-tag">🔒 CISO</div>
+                            <div class="persona-tag">🏗️ Enterprise Architect</div>
+                            <div class="persona-tag">⚖️ Compliance Officer</div>
+                            <div class="persona-tag">🔧 IT Director</div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-steps">
+                        <h4>How to Demo</h4>
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <div class="step-title">Security Architecture</div>
+                                <div class="step-detail">Whiteboard zero-trust architecture and encryption layers</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <div class="step-title">Compliance Dashboard</div>
+                                <div class="step-detail">Show real-time compliance monitoring and audit trails</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <div class="step-title">Failover Demo</div>
+                                <div class="step-detail">Demonstrate automatic failover with zero downtime</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <div class="step-title">Data Residency</div>
+                                <div class="step-detail">Show data location controls and sovereignty options</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <div class="step-title">TCO Comparison</div>
+                                <div class="step-detail">Compare security investment vs. breach/downtime costs</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="win-story">
+                        <h4>🏆 Win Story</h4>
+                        <p><strong>Global Bank:</strong> Replaced on-premise solution with cloud. Achieved 100% uptime for 18 months, passed all compliance audits, reduced security incidents by 75%.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Certification Path Section -->
+        <div class="content-section" id="certification">
+            <h2 style="color: #667eea; margin-bottom: 30px; text-align: center;">Partner Certification Journey</h2>
+            
+            <div class="cert-path">
+                <div class="cert-levels">
+                    <div class="cert-level fundamental">
+                        <div class="cert-icon">🎓</div>
+                        <div class="cert-title">Fundamental</div>
+                        <div class="cert-content">Platform & AI Basics</div>
+                        <div class="cert-modules">
+                            <ul>
+                                <li>Platform Architecture Overview</li>
+                                <li>Basic Voice & Digital Channels</li>
+                                <li>AI Fundamentals</li>
+                                <li>Value Proposition Basics</li>
+                                <li>Simple Demo Scenarios</li>
+                                <li>Licensing 101</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="cert-arrow">→</div>
+                    
+                    <div class="cert-level advanced">
+                        <div class="cert-icon">🚀</div>
+                        <div class="cert-title">Advanced</div>
+                        <div class="cert-content">Solution Selling</div>
+                        <div class="cert-modules">
+                            <ul>
+                                <li>Complex Integration Scenarios</li>
+                                <li>Workforce Optimization Suite</li>
+                                <li>Workflow Orchestration</li>
+                                <li>AI/Automation Solutions</li>
+                                <li>ROI Modeling</li>
+                                <li>Competitive Positioning</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="cert-arrow">→</div>
+                    
+                    <div class="cert-level expert">
+                        <div class="cert-icon">🏆</div>
+                        <div class="cert-title">Expert</div>
+                        <div class="cert-content">Strategic Partnership</div>
+                        <div class="cert-modules">
+                            <ul>
+                                <li>Agentic AI Advanced</li>
+                                <li>Enterprise Architecture</li>
+                                <li>Industry Specialization</li>
+                                <li>Executive Engagement</li>
+                                <li>Transformation Consulting</li>
+                                <li>Strategic Account Planning</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="business-outcomes">
+                <h3>4 Key Business Outcomes We Enable</h3>
+                <div class="outcomes-grid">
+                    <div class="outcome-card">
+                        <div class="outcome-icon">💰</div>
+                        <div class="outcome-title">Cost Optimization</div>
+                        <div class="outcome-metric">25-40% reduction in operational costs</div>
+                    </div>
+                    <div class="outcome-card">
+                        <div class="outcome-icon">😊</div>
+                        <div class="outcome-title">Customer Satisfaction</div>
+                        <div class="outcome-metric">15-30% CSAT improvement</div>
+                    </div>
+                    <div class="outcome-card">
+                        <div class="outcome-icon">⚡</div>
+                        <div class="outcome-title">Operational Efficiency</div>
+                        <div class="outcome-metric">35-50% productivity gain</div>
+                    </div>
+                    <div class="outcome-card">
+                        <div class="outcome-icon">📈</div>
+                        <div class="outcome-title">Revenue Growth</div>
+                        <div class="outcome-metric">20-35% increase in upsell/cross-sell</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
